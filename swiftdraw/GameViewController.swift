@@ -26,7 +26,7 @@ class GameViewController: UIViewController {
         
         /* Set the scale mode to scale to fit the window */
         scene.scaleMode = .AspectFill
-        
+        scene.size = skView.bounds.size
         skView.presentScene(scene)
     }
 
@@ -50,4 +50,5 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+
 }
