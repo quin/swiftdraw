@@ -9,8 +9,40 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    //setting up global variables
+    
+    
+    //the path of where the user is currently drawing
+    var currentPath = CGPathCreateMutable()
+    
+    //drawing that will be altered to give an effect of drawing on the screen
+    var currentDrawing = SKShapeNode()
+    
+    //the stroke width of the drawing
+    let lineWidth : CGFloat = 4
+    
+    
     override func didMoveToView(view: SKView) {
         setupScene()
+        func setupGlobals(){
+    
+            // changing the stroke color to black
+            currentDrawing.strokeColor = UIColor.blackColor()
+            
+            //setting up the width of the line
+            currentDrawing.lineWidth = lineWidth
+        }
+        
+        // detects when user swipes across the screen
+        func setupGestureRecognizers(){
+            self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: Selector("handlePan:")))
+        }
+        
+        
+
+
+
+        
 //        /* Setup your scene here */
 //        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
 //        myLabel.text = "Hello, World!";
@@ -43,9 +75,17 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
+    
+    //setting up a function for the scene
     func setupScene(){
+        
+        //setting background color to white
         self.backgroundColor = UIColor.whiteColor()
+        
+        //setting world gravity to -9.8
         self.physicsWorld.gravity = CGVectorMake(0, -9.8)
+        
+        //setting physics for the body
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
     }
     
